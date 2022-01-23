@@ -5,14 +5,16 @@ const cors = require("cors")
 const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
 const helmet = require("helmet")
+const morgan = require("morgan")
 require("dotenv").config()
 
 
 //Default middlewares
-app.use(cors())
+app.options('*', cors());
 app.use(helmet())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:false}))
+app.use(morgan("common"))
 
 //database connect
 mongoose.connect(process.env.mongo_URL,()=>{
@@ -20,7 +22,7 @@ mongoose.connect(process.env.mongo_URL,()=>{
 })
 
 //routes
-
+app.use("/api/customer",require("./Routes/Customer Route/index"))
 
 
 
