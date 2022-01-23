@@ -3,7 +3,6 @@ const router = express.Router()
 const Customer = require('../../Models/customer')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const tokenAuth = require('../../Middlewares/TokenAuthorize')
 require('dotenv').config()
 
 router.post('/customerRegister', async (req, res) => {
@@ -59,9 +58,6 @@ router.post('/customerLogin', async (req, res) => {
   }
 })
 
-router.post("/getCustomerData",tokenAuth,(req,res)=>{
-    res.status(200).json("Successfully entered the protected route")
-})
 
 
 
