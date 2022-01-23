@@ -23,6 +23,7 @@ mongoose.connect(process.env.mongo_URL,()=>{
 
 //routes
 app.use("/api/customer",require("./Routes/Customer Route/index"))
+app.use("/api/manager",require("./Routes/Manager Route/index"))
 
 
 

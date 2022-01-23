@@ -11,7 +11,7 @@ const BookSchema = new mongoose.Schema(
       required: true,
     },
     price: {
-      type: Float64Array,
+      type: Number,
       required: true,
     },
     reorderThreshold: {

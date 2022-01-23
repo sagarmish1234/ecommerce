@@ -1,51 +1,50 @@
 const express = require('express')
 const router = express.Router()
-const Customer = require('../../Models/customer')
+const Manager = require('../../Models/manager.js')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
 
-//customer registration
-router.post('/customerRegister', async (req, res) => {
+//manager register
+router.post('/managerRegister', async (req, res) => {
   try {
-    const customer = await Customer.find({ email: req.body.email })
-    if (customer.length != 0) {
+    const manager = await Manager.findOne({ email: req.body.email })
+    if (manager) {
       return res.status(403).json({ success: false, message: 'Email Taken' })
     }
     const salt = await bcrypt.genSalt(10)
     const hash = await bcrypt.hash(req.body.password, salt)
-    const newCustomer = new Customer({
+    const newManager = new Manager({
       username: req.body.username,
       password: hash,
-      name: req.body.name,
       email: req.body.email,
-      address: req.body.address,
     })
 
-    const response = await newCustomer.save()
+    const response = await newManager.save()
     return res.status(200).json(response)
   } catch (err) {
     return res.status(500).json(err)
   }
 })
 
-//Customer login with jwt token authentication
-router.post('/customerLogin', async (req, res) => {
+
+//Manager Login  with jwt token authorization
+router.post('/managerLogin', async (req, res) => {
   try {
-    const customer = await Customer.findOne({ email: req.body.email })
-    if (!customer) {
+    const manager = await Manager.findOne({ email: req.body.email })
+    if (!manager) {
       return res
         .status(404)
         .json({ success: false, message: 'User does not exist' })
     }
-    const match = await bcrypt.compare(req.body.password, customer.password)
+    const match = await bcrypt.compare(req.body.password, manager.password)
     if (!match) {
       return res
         .status(400)
         .json({ success: false, message: 'Invalid Credentials' })
     }
     jwt.sign(
-      customer.toJSON(),
+      manager.toJSON(),
       process.env.secret,
       (err, token) => {
         if (err) {
@@ -59,6 +58,8 @@ router.post('/customerLogin', async (req, res) => {
     return res.status(500).json(err)
   }
 })
+
+
 
 
 module.exports = router

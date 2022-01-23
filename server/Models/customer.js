@@ -5,6 +5,7 @@ const CustomerSchema = new mongoose.Schema(
     username: {
       type: String,
       required: true,
+      unique: true,
     },
     password: {
       type: String,
@@ -16,7 +17,8 @@ const CustomerSchema = new mongoose.Schema(
     },
     email: {
       type: String,
-      required:true
+      required: true,
+      unique: true,
     },
     address: {
       type: String,
@@ -25,10 +27,10 @@ const CustomerSchema = new mongoose.Schema(
     member: {
       type: Boolean,
       required: true,
-      default: true
+      default: true,
     },
   },
   { timestamps: true },
 )
 
-module.exports = mongoose.model("customer",CustomerSchema)
+module.exports = mongoose.model('customer', CustomerSchema)
