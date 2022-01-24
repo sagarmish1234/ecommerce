@@ -62,7 +62,9 @@ router.get('/bookGetAll', async (req, res) => {
 //get books for search title
 router.get('/:title/search', async (req, res) => {
   try {
-    const books = await Book.find({title:req.params.title})
+    var searchTitle = req.params.title.split('%');
+    console.log(req.params.title)
+    const books = await Book.find({title:{'$regex': req.params.title,$options:'i'}})
     return res.status(200).json({ success: true, message: books })
   } catch (err) {
     console.log(err)

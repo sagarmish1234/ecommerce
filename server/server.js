@@ -10,7 +10,7 @@ require("dotenv").config()
 
 
 //Default middlewares
-app.options('*', cors());
+app.use(cors());
 app.use(helmet())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:false}))
@@ -25,7 +25,7 @@ mongoose.connect(process.env.mongo_URL,()=>{
 app.use("/api/customer",require("./Routes/Customer Route/index"))
 app.use("/api/manager",require("./Routes/Manager Route/index"))
 app.use("/api/user",require("./Routes/UserAuth/auth"))
-app.use("/api/inventory",require("./Routes/Inventory Route/index"))
+app.use("/api/inventory",require("./Routes/Invetory Route/index"))
 
 
 const port = process.env.PORT || 8080
