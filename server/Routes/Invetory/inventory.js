@@ -1,11 +1,11 @@
 const express = require('express')
 const router = express.Router()
-const tokenAuth = require('../../../Middlewares/TokenAuthorize')
-const Book = require('../../../Models/book')
+const tokenAuth = require('../../Middlewares/TokenAuthorize')
+const Book = require('../../Models/book')
 //CRUD routes
 
 //create an item entry
-router.post('/inventory/newBook', async (req, res) => {
+router.post('/newBook', async (req, res) => {
   try {
     const book = await Book.findOne({
       title: req.body.title,
@@ -33,7 +33,7 @@ router.post('/inventory/newBook', async (req, res) => {
 })
 
 //update an item entry
-router.put('/inventory/:id/bookUpdate', async (req, res) => {
+router.put('/:id/bookUpdate', async (req, res) => {
   try {
     const book = await Book.findById(req.params.id)
     if (!book) {
@@ -49,7 +49,7 @@ router.put('/inventory/:id/bookUpdate', async (req, res) => {
   }
 })
 //get all books
-router.get('/inventory/bookGetAll', async (req, res) => {
+router.get('/bookGetAll', async (req, res) => {
   try {
     const books = await Book.find({})
     return res.status(200).json({ success: true, message: books })
@@ -58,8 +58,20 @@ router.get('/inventory/bookGetAll', async (req, res) => {
     res.status(500).json(err)
   }
 })
+
+//get books for search title
+router.get('/:title/search', async (req, res) => {
+  try {
+    const books = await Book.find({title:req.params.title})
+    return res.status(200).json({ success: true, message: books })
+  } catch (err) {
+    console.log(err)
+    return res.status(500).json(err)
+  }
+})
+
 //get an item entry
-router.get('/inventory/:id/bookGet', async (req, res) => {
+router.get('/:id/bookGet', async (req, res) => {
   try {
     const book = await Book.findById(req.params.id)
     if (!book) {
@@ -72,7 +84,7 @@ router.get('/inventory/:id/bookGet', async (req, res) => {
   }
 })
 //delete an item entry
-router.delete('/inventory/:id/bookDelete', async (req, res) => {
+router.delete('/:id/bookDelete', async (req, res) => {
   try {
     const book = await Book.findById(req.params.id)
     if (!book) {
