@@ -29,36 +29,5 @@ router.post('/customerRegister', async (req, res) => {
   }
 })
 
-//Customer login with jwt token authentication
-router.post('/customerLogin', async (req, res) => {
-  try {
-    const customer = await Customer.findOne({ email: req.body.email })
-    if (!customer) {
-      return res
-        .status(404)
-        .json({ success: false, message: 'User does not exist' })
-    }
-    const match = await bcrypt.compare(req.body.password, customer.password)
-    if (!match) {
-      return res
-        .status(400)
-        .json({ success: false, message: 'Invalid Credentials' })
-    }
-    jwt.sign(
-      customer.toJSON(),
-      process.env.secret,
-      (err, token) => {
-        if (err) {
-          return res.status(403).json(err)
-        }
-        res.status(200).json({ token: token })
-      },
-    )
-  } catch (err) {
-    console.log(err)
-    return res.status(500).json(err)
-  }
-})
-
 
 module.exports = router

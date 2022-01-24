@@ -16,14 +16,15 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(morgan("common"))
 
-//database connect
+//Database connect
 mongoose.connect(process.env.mongo_URL,()=>{
     console.log("The database has been connect successfully")
 })
 
-//routes
+//Routes
 app.use("/api/customer",require("./Routes/Customer Route/index"))
 app.use("/api/manager",require("./Routes/Manager Route/index"))
+app.use("/api/user",require("./Routes/UserAuth/auth"))
 
 
 

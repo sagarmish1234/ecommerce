@@ -5,7 +5,7 @@ const Book = require('../../../Models/book')
 //CRUD routes
 
 //create an item entry
-router.post('/newBook', async (req, res) => {
+router.post('/inventory/newBook', async (req, res) => {
   try {
     const book = await Book.findOne({
       title: req.body.title,
@@ -33,7 +33,7 @@ router.post('/newBook', async (req, res) => {
 })
 
 //update an item entry
-router.put('/:id/bookUpdate', async (req, res) => {
+router.put('/inventory/:id/bookUpdate', async (req, res) => {
   try {
     const book = await Book.findById(req.params.id)
     if (!book) {
@@ -49,7 +49,7 @@ router.put('/:id/bookUpdate', async (req, res) => {
   }
 })
 //get all books
-router.get('/bookGetAll', async (req, res) => {
+router.get('/inventory/bookGetAll', async (req, res) => {
   try {
     const books = await Book.find({})
     return res.status(200).json({ success: true, message: books })
@@ -59,7 +59,7 @@ router.get('/bookGetAll', async (req, res) => {
   }
 })
 //get an item entry
-router.get('/:id/bookGet', async (req, res) => {
+router.get('/inventory/:id/bookGet', async (req, res) => {
   try {
     const book = await Book.findById(req.params.id)
     if (!book) {
@@ -72,7 +72,7 @@ router.get('/:id/bookGet', async (req, res) => {
   }
 })
 //delete an item entry
-router.delete('/:id/bookDelete', async (req, res) => {
+router.delete('/inventory/:id/bookDelete', async (req, res) => {
   try {
     const book = await Book.findById(req.params.id)
     if (!book) {
