@@ -25,7 +25,7 @@ mongoose.connect(process.env.mongo_URL,()=>{
 app.use("/api/customer",require("./Routes/Customer Route/index"))
 app.use("/api/manager",require("./Routes/Manager Route/index"))
 app.use("/api/user",require("./Routes/UserAuth/auth"))
-
+app.use("/api/inventory",require("./Routes/Inventory Route/index"))
 
 
 const port = process.env.PORT || 8080
