@@ -6,6 +6,10 @@ const BookSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    image: {
+      type: String,
+      required: true,
+    },
     author: {
       type: String,
       required: true,
@@ -30,4 +34,4 @@ const BookSchema = new mongoose.Schema(
   { timestamps: true },
 )
 
-module.exports = mongoose.model("book",BookSchema)
+module.exports = mongoose.model('book', BookSchema)
