@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken')
 require('dotenv').config()
 
 //User login with jwt token authentication
-router.post('/userAuth', async (req, res) => {
+router.post('/customerLogin', async (req, res) => {
   try {
     const customer = await Customer.findOne({ email: req.body.email })
     const manager = await Manager.findOne({ email: req.body.email })
@@ -15,7 +15,7 @@ router.post('/userAuth', async (req, res) => {
       return res.status(404).json({ success: false, message: 'User not found' })
     }
     var isManager = false
-    var user = customer
+    const user = customer
     if (manager) {
       isManager = true
       user = manager
@@ -30,7 +30,7 @@ router.post('/userAuth', async (req, res) => {
       if (err) {
         return res.status(403).json(err)
       }
-      res.status(200).json({ user: user.username, token: token, isManager: isManager,message: 'User signed successfully',success: true })
+      res.status(200).json({ token: token, isManager: isManager,message: 'User signed successfully'})
     })
   } catch (err) {
     console.log(err)
