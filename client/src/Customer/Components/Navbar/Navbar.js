@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import './navbar.css'
 import { Search, ShoppingCart } from '@mui/icons-material'
-import url from '../../CustomerConfig'
+import url from '../../../Common/CustomerConfig'
+import {Link} from 'react-router-dom'
+
+
 function Navbar() {
   const [search, setSearch] = useState('')
   const [inventory, setInventory] = useState([])
@@ -55,7 +58,7 @@ function Navbar() {
         </div>
         <ul className="navbarLinks">
           <li className="navbarLink">Address</li>
-          <li className="navbarLink">Sign in</li>
+          <li className="navbarLink"><Link to="/login" style={{textDecoration: 'none',color: 'white'}}>Sign in</Link></li>
           <li className="navbarLink">
             Orders & <br />
             Return

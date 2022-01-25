@@ -6,15 +6,16 @@ const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
 const helmet = require("helmet")
 const morgan = require("morgan")
+const compression = require("compression")
 require("dotenv").config()
 
 
 //Default middlewares
 app.use(cors());
-app.use(helmet())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(morgan("common"))
+app.use(compression())
 
 //Database connect
 mongoose.connect(process.env.mongo_URL,()=>{
