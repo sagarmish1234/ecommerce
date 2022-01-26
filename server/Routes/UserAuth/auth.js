@@ -15,7 +15,7 @@ router.post('/customerLogin', async (req, res) => {
       return res.status(404).json({ success: false, message: 'User not found' })
     }
     var isManager = false
-    const user = customer
+    var user = customer
     if (manager) {
       isManager = true
       user = manager
@@ -30,7 +30,7 @@ router.post('/customerLogin', async (req, res) => {
       if (err) {
         return res.status(403).json(err)
       }
-      res.status(200).json({ token: token, isManager: isManager,message: 'User signed successfully'})
+      res.status(200).json({ token: token, isManager: isManager,message: 'User signed successfully',success:true})
     })
   } catch (err) {
     console.log(err)

@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import './navbar.css'
+import { Link } from 'react-router-dom'
+import { UserDetails } from '../../../App'
 import { Search, ShoppingCart } from '@mui/icons-material'
 import url from '../../CustomerConfig'
 function Navbar() {
+  const [userDetails, setUserDetails] = useContext(UserDetails)
   const [search, setSearch] = useState('')
-  const [inventory, setInventory] = useState([])
   useEffect(() => {
     async function FetchData() {
       try {
@@ -12,8 +14,8 @@ function Navbar() {
           method: 'GET',
         })
         const response = await temp.json()
+        setUserDetails({ ...userDetails, inventory: response.message })
         localStorage.inventory = JSON.stringify(response.message)
-        setInventory(response.message)
       } catch (err) {
         console.error(err)
       }
@@ -55,7 +57,9 @@ function Navbar() {
         </div>
         <ul className="navbarLinks">
           <li className="navbarLink">Address</li>
-          <li className="navbarLink">Sign in</li>
+          <li className="navbarLink">
+            <Link to="/login">Sign in</Link>{' '}
+          </li>{' '}
           <li className="navbarLink">
             Orders & <br />
             Return
