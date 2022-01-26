@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import './App.css';
-import Home from './Common/Pages/Home/Home';
+import Home from './Common/DefaultVeiw';
 export const UserDetails = React.createContext({})
 function App() {
   const [userDetails, setUserDetails] = useState({})
