@@ -1,3 +1,4 @@
+const { response } = require('express')
 const express = require('express')
 const router = express.Router()
 const tokenAuth = require('../../Middlewares/TokenAuthorize')
@@ -24,8 +25,9 @@ router.post('/newBook', async (req, res) => {
       stopOrder: req.body.stopOrder,
       stock: req.body.stock,
     })
-    const respose = await newBook.save()
-    return res.status(200).json({ success: true, message: respose })
+    await newBook.save()
+    const response = await Book.find({})
+    return res.status(200).json({ success: true, message: response })
   } catch (err) {
     console.log(err)
     return res.status(500).json(err)

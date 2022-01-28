@@ -30,7 +30,16 @@ router.post('/customerLogin', async (req, res) => {
       if (err) {
         return res.status(403).json(err)
       }
-      res.status(200).json({ token: token, isManager: isManager,message: 'User signed successfully',success:true,username:user.username})
+      res
+        .status(200)
+        .json({
+          token: token,
+          isManager: isManager,
+          message: 'User signed successfully',
+          success: true,
+          username: user.username,
+          user: user,
+        })
     })
   } catch (err) {
     console.log(err)

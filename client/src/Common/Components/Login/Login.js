@@ -39,7 +39,8 @@ function Login() {
           ...userDetails,
           token: response.token,
           isManager: response.isManager,
-          username: response.username
+          username: response.username,
+          user: response.user
         })
         localStorage.userDetails = JSON.stringify(response);
         navigate('/inventory')

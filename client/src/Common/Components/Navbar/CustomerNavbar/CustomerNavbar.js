@@ -121,10 +121,12 @@ function CustomerNavbar() {
               {userDetails.username}
             </li>
           )}
+          <Link to="/ordersGet" style={{textDecoration:"none",color:"white"}}>
           <li className="navbarLink">
             Orders & <br />
             Return
           </li>
+          </Link>
           <li className="navbarLink">
             <span className="navbarCart">
               <span className="cartQty">0</span>

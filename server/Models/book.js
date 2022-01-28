@@ -19,6 +19,7 @@ const BookSchema = new mongoose.Schema(
     },
     reorderThreshold: {
       type: String,
+      default: 100
     },
     stopOrder: {
       type: Boolean,
