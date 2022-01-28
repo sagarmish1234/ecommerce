@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import './customerNavbar.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { UserDetails } from '../../../../App'
 import {
   Search,
@@ -8,12 +8,15 @@ import {
   Person,
   Logout,
   Login,
+  Input,
+  AddLocation,
 } from '@mui/icons-material'
 import url from '../../../CustomerConfig'
 
 function CustomerNavbar() {
   const [userDetails, setUserDetails] = useContext(UserDetails)
   const [search, setSearch] = useState('')
+  const naviagte = useNavigate()
   useEffect(() => {
     async function FetchData() {
       try {
@@ -56,14 +59,23 @@ function CustomerNavbar() {
   return (
     <>
       <div className="navbarContainer">
-        <div className="navbarBrand">
-          <img
-            src="/images/brandImage.png"
-            alt="img"
-            className="navbarBrandImg"
-          />
-          <h1 className="navbarBrandTitle">ShopCart</h1>
-        </div>
+        <Link
+          to="/"
+          style={{
+            color: 'white',
+            textDecoration: 'none',
+            marginRight: '20px',
+          }}
+        >
+          <div className="navbarBrand">
+            <img
+              src="/images/brandImage.png"
+              alt="img"
+              className="navbarBrandImg"
+            />
+            <h1 className="navbarBrandTitle">ShopCart</h1>
+          </div>
+        </Link>
         <div className="navbarSearch">
           <input
             type="text"
@@ -78,17 +90,31 @@ function CustomerNavbar() {
           ></Search>
         </div>
         <ul className="navbarLinks">
-          <li className="navbarLink selected">Address</li>
+          <li className="navbarLink selected">
+            <AddLocation></AddLocation>
+            Address
+          </li>
           {!userDetails.token ? (
-            <li className="navbarLink">
+            <>
+              <Link
+                to="/register"
+                style={{ textDecoration: 'none', color: 'white' }}
+              >
+                <li className="navbarLink">
+                  <Input></Input>
+                  Register
+                </li>
+              </Link>
               <Link
                 to="/login"
                 style={{ textDecoration: 'none', color: 'white' }}
               >
-                <Login></Login>
-                Sign in
+                <li className="navbarLink">
+                  <Login></Login>
+                  Sign in
+                </li>
               </Link>{' '}
-            </li>
+            </>
           ) : (
             <li className="navbarLink">
               <Person></Person>
@@ -128,6 +154,7 @@ function CustomerNavbar() {
               onClick={() => {
                 localStorage.removeItem('userDetails')
                 setUserDetails({})
+                naviagte('/')
               }}
             >
               <Logout></Logout>

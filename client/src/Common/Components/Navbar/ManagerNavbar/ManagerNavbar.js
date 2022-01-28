@@ -1,19 +1,21 @@
 import React, { useContext, useEffect } from 'react'
 import './managerNavbar.css'
+import { Link,Navigate,useNavigate } from 'react-router-dom'
 import { Logout } from '@mui/icons-material'
 import { UserDetails } from '../../../../App'
 function ManagerNavbar() {
   const [userDetails, setUserDetails] = useContext(UserDetails)
-
+const navigate = useNavigate()
   useEffect(() => {
     const Select = () => {
-      document.querySelectorAll('.managerNavbarLink').forEach((link)=>{
-        link.addEventListener("click",()=>{
-          document.querySelector(".managerNavbarLink.active").classList.toggle("active")
-          link.classList.toggle("active");
+      document.querySelectorAll('.managerNavbarLink').forEach((link) => {
+        link.addEventListener('click', () => {
+          document
+            .querySelector('.managerNavbarLink.active')
+            .classList.toggle('active')
+          link.classList.toggle('active')
         })
       })
-      
     }
     Select()
     // return () => {
@@ -32,8 +34,12 @@ function ManagerNavbar() {
           <h1 className="managerNavbarBrandTitle">ShopCart</h1>
         </div>
         <ul className="managerNavbarLinks">
-          <li className="managerNavbarLink active">Inventory</li>
+          <Link to="/inventory" style={{textDecoration:"none",color:"white"}}>
+            <li className="managerNavbarLink active">Inventory</li>
+          </Link>
+          <Link to="/orders" style={{textDecoration:"none",color:"white"}}>
           <li className="managerNavbarLink">Orders</li>
+          </Link>
           <li className="managerNavbarLink">
             {userDetails.username ||
               JSON.parse(localStorage.userDetails).username}
@@ -59,6 +65,7 @@ function ManagerNavbar() {
               onClick={() => {
                 localStorage.removeItem('userDetails')
                 setUserDetails({})
+                navigate("/")
               }}
             >
               <Logout></Logout>
