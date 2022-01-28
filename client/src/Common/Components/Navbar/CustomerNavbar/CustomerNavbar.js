@@ -2,8 +2,15 @@ import React, { useState, useEffect, useContext } from 'react'
 import './customerNavbar.css'
 import { Link } from 'react-router-dom'
 import { UserDetails } from '../../../../App'
-import { Search, ShoppingCart } from '@mui/icons-material'
+import {
+  Search,
+  ShoppingCart,
+  Person,
+  Logout,
+  Login,
+} from '@mui/icons-material'
 import url from '../../../CustomerConfig'
+
 function CustomerNavbar() {
   const [userDetails, setUserDetails] = useContext(UserDetails)
   const [search, setSearch] = useState('')
@@ -21,6 +28,21 @@ function CustomerNavbar() {
       }
     }
     if (!localStorage.inventory) FetchData()
+  }, [])
+  useEffect(() => {
+    const Select = () => {
+      document.querySelectorAll('.navbarLink').forEach((link) => {
+        link.addEventListener('click', () => {
+          document
+            .querySelector('.navbarLink.selected')
+            .classList.toggle('selected')
+          link.classList.toggle('selected')
+        })
+      })
+    }
+    Select()
+    // return () => {
+    // }
   }, [])
 
   const SearchInventory = async () => {
@@ -56,10 +78,23 @@ function CustomerNavbar() {
           ></Search>
         </div>
         <ul className="navbarLinks">
-          <li className="navbarLink">Address</li>
-          <li className="navbarLink">
-            <Link to="/login">Sign in</Link>{' '}
-          </li>{' '}
+          <li className="navbarLink selected">Address</li>
+          {!userDetails.token ? (
+            <li className="navbarLink">
+              <Link
+                to="/login"
+                style={{ textDecoration: 'none', color: 'white' }}
+              >
+                <Login></Login>
+                Sign in
+              </Link>{' '}
+            </li>
+          ) : (
+            <li className="navbarLink">
+              <Person></Person>
+              {userDetails.username}
+            </li>
+          )}
           <li className="navbarLink">
             Orders & <br />
             Return
@@ -71,6 +106,34 @@ function CustomerNavbar() {
             </span>
             <span>Cart</span>
           </li>
+
+          {userDetails.token && (
+            <li
+              style={{
+                backgroundColor: 'transparent',
+                height: '35px',
+                width: 'auto',
+                outline: 'none',
+                padding: '10px',
+                border: '2px solid white',
+                color: 'white',
+                margin: 'auto 0px',
+                borderRadius: '7px',
+                fontSize: '1.2rem',
+                display: 'flex',
+                alignItems: 'center',
+                fontWeight: '700',
+                cursor: 'pointer',
+              }}
+              onClick={() => {
+                localStorage.removeItem('userDetails')
+                setUserDetails({})
+              }}
+            >
+              <Logout></Logout>
+              Logout
+            </li>
+          )}
         </ul>
       </div>
     </>

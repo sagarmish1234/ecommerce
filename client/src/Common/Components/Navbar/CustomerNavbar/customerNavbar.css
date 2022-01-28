@@ -22,7 +22,7 @@
     object-fit: cover;
 }
 .navbarSearch{
-    flex:6;
+    flex:4.5;
     display: flex;
     align-items: center;
     background-color:white;
@@ -68,17 +68,24 @@
     flex: 4;
     list-style: none;
     display: flex;
+    align-items: center;
     justify-content: space-around;
 }
 .navbarLink{
-    font-size:1.4rem;
-    align-items: center;
+    font-size:1.3rem;
     display: flex;
+    align-items: center;
     text-align: center;
     font-weight:500;
     cursor: pointer;
 }
+.navbarLink.active{
+    font-size:1.2rem;
 
+}
+.navbarLink.selected{
+    text-decoration: underline;
+}
 .navbarLink:hover{
     text-decoration: underline;
 }

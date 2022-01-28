@@ -1,0 +1,76 @@
+.loginContainer {
+  width: 100%;
+  height: calc(100vh - 80px);
+  background: linear-gradient(
+    90deg,
+    #1f005c,
+    #3e0075,
+    #67008d,
+    #9a00a6,
+    #be00a7,
+    #d70092,
+    #ef0074,
+    #ff094f,
+    #ff2135,
+    #ff4f3a,
+    #ff8752,
+    #ffb56b
+  );
+  padding-top: 50px;
+}
+.loginForm {
+  display: flex;
+  margin: auto;
+  align-content: center;
+  width: 40%;
+  flex-direction: column;
+  color: white;
+  padding: 60px 125px;
+  height: 550px;
+  border-radius: 25px;
+  background-color: black;
+}
+.loginInput {
+  margin-top: 50px;
+  height: 37px;
+  border-radius: 7px;
+  border: none;
+  outline: none;
+  padding: 10px;
+  font-size: 1.2rem;
+  transition-duration: 250ms;
+}
+.loginInput:focus {
+  outline: none;
+  transform: scale(1.2);
+  border: 3px solid rgb(9, 255, 9);
+}
+.showPassword {
+  margin-top: 20px;
+  font-weight: bold;
+}
+.loginButton {
+  cursor: pointer;
+  margin-top: 20px;
+  height: 40px;
+  border-radius: 7px;
+  border: none;
+  outline: none;
+  color: white;
+  font-size: 1.5rem;
+  background: #8e2de2; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to left,
+    #4a00e0,
+    #8e2de2
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to left,
+    #4a00e0,
+    #8e2de2
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.loginButton:hover {
+  transform: scale(1.2);
+  transition-duration: 250ms;
+}

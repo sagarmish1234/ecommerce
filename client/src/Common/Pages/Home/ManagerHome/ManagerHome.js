@@ -1,11 +1,14 @@
 import React from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
+import Inventory from '../../../Components/Inventory/Inventory'
 function ManagerHome() {
   const location = useLocation()
 
   return (
     <>
-      <h1>Manager Home</h1>
+      <Routes>
+        <Route path="/inventory" element={<Inventory></Inventory>}></Route>
+      </Routes>
     </>
   )
 }

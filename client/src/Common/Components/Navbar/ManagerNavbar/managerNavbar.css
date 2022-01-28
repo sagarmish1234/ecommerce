@@ -1,0 +1,45 @@
+.managerNavbarContainer{
+    display:flex;
+    padding:40px;
+    height: 50px;
+    background-color:black;
+    color: white;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.managerNavbarBrand{
+    flex:2;
+    display: flex;
+    align-items: center;
+}
+.managerNavbarBrandTitle{
+    color:white;
+}
+.managerNavbarBrandImg{
+    height: 64px;
+    width: 64px;
+    object-fit: cover;
+}
+.managerNavbarLinks{
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+.managerNavbarLink{
+    margin-right: 40px;
+    border-radius: 7px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 1.7rem;
+    border: 2px solid white;
+}
+.managerNavbarLink:hover{
+    background-color: white;
+    color: black;
+}
+
+.managerNavbarLink.active{
+    background-color: white;
+    color: black;
+}

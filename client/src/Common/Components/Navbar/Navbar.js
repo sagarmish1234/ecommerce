@@ -8,7 +8,7 @@ function Navbar() {
 
   return (
     <>
-      {userDetails.isManager ? (
+      {userDetails.isManager? (
         <ManagerNavbar></ManagerNavbar>
       ) : (
         <CustomerNavbar></CustomerNavbar>
