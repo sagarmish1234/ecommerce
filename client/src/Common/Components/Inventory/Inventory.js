@@ -66,6 +66,7 @@ function Inventory() {
   }
   const AddItem = async (e) => {
     e.preventDefault()
+    
     try {
       const temp = await fetch(`${url}/api/inventory/newBook`, {
         method: 'POST',
@@ -132,7 +133,15 @@ function Inventory() {
               <button
                 className="inventoryAddItem"
                 onClick={() => {
-                  setItem({ ...item, showModal: !item.showModal })
+                  setItem({
+                    title: '',
+                    author: '',
+                    price: '',
+                    stock: '',
+                    image: '',
+                    showModal: true,
+                    update: false,
+                  })
                 }}
               >
                 + Add Item
