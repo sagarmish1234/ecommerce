@@ -7,10 +7,11 @@
   display: flex;
   color: white;
   flex-direction: column;
+  border-radius: 7px;
   width: 60%;
   background-color: black;
   margin: auto;
-  padding: 10px;
+  padding: 15px;
 }
 .inventoryContentHead {
   display: flex;
@@ -47,6 +48,8 @@
   cursor: pointer;
   border-radius: 10px;
 }
+
+
 .inventoryModalContainer{
   width: 100%;
   position: absolute;

@@ -1,7 +1,27 @@
 .itemContainer{
     display: grid;
     grid-template-rows: 1fr;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     font-size: 1.5rem;
+    margin-bottom: 20px;
     justify-items: center;
+}
+
+.itemDeleteButton{
+    width: 80%;
+    border: none;
+    background-color: red;
+    color: white;
+    font-size: 1.2rem;
+    border-radius: 7px;
+    cursor: pointer;
+}
+.itemUpdateButton{
+    width: 80%;
+    border: none;
+    background-color:rgb(99, 0, 192);
+    color: white;
+    font-size: 1.2rem;
+    border-radius: 7px;
+    cursor: pointer;
 }

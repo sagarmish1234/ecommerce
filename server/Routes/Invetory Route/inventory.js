@@ -41,10 +41,15 @@ router.put('/:id/bookUpdate', async (req, res) => {
     if (!book) {
       return res.status(404).json({ success: false, message: 'Item not found' })
     }
-    await book.updateOne($set, req.body)
+    await book.update({ $set: req.body })
+    const books = await Book.find({})
     return res
       .status(200)
-      .json({ success: true, message: 'Item updated successfully' })
+      .json({
+        success: true,
+        message: 'Item updated successfully',
+        books: books,
+      })
   } catch (err) {
     console.log(err)
     res.status(500).json(err)
@@ -64,9 +69,11 @@ router.get('/bookGetAll', async (req, res) => {
 //get books for search title
 router.get('/:title/search', async (req, res) => {
   try {
-    var searchTitle = req.params.title.split('%');
+    var searchTitle = req.params.title.split('%')
     console.log(req.params.title)
-    const books = await Book.find({title:{'$regex': req.params.title,$options:'i'}})
+    const books = await Book.find({
+      title: { $regex: req.params.title, $options: 'i' },
+    })
     return res.status(200).json({ success: true, message: books })
   } catch (err) {
     console.log(err)
@@ -95,9 +102,14 @@ router.delete('/:id/bookDelete', async (req, res) => {
       return res.status(404).json({ success: false, message: 'Item not found' })
     }
     await book.deleteOne()
+    const response = await Book.find({})
     return res
       .status(200)
-      .json({ success: true, message: 'Item deleted successfully' })
+      .json({
+        success: true,
+        message: 'Item deleted successfully',
+        books: response,
+      })
   } catch (err) {
     console.log(err)
     res.status(500).json(err)
