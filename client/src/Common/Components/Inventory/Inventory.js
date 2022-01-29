@@ -10,23 +10,56 @@ import { Item } from '../../Pages/Home/ManagerHome/ManagerHome'
 function Inventory() {
   const [inventoryItems, setInventoryItems] = useContext(InventoryItems)
   const [item, setItem] = useContext(Item)
+  const [search, setSearch] = useState('')
+
   const handleChange = (e) => {
     const { name, value } = e.target
     setItem({ ...item, [name]: value })
   }
+
+  const searchItem = async () => {
+    try {
+      const temp = await fetch(`${url}/api/inventory/${search}/search`)
+      const response = await temp.json()
+      console.log(response)
+      setInventoryItems(response.message)
+    } catch (err) {
+      console.log(err)
+    }
+  }
+  const imageUpload = async (e) => {
+    var formdata = new FormData()
+
+    formdata.append('file', e.target.files[0])
+    formdata.append('cloud_name', 'sagarmish1234')
+    formdata.append('upload_preset', 'tutorial')
+
+    const temp = await fetch(
+      'https://api.cloudinary.com/v1_1/sagarmish1234/auto/upload',
+      {
+        method: 'post',
+        mode: 'cors',
+        body: formdata,
+      },
+    )
+    const response = await temp.json()
+    console.log(response)
+    setItem({ ...item, image: response.secure_url })
+  }
+
   const updateItem = async (_id) => {
     try {
       console.log(_id)
       const temp = await fetch(`${url}/api/inventory/${_id}/bookUpdate`, {
         method: 'PUT',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify(item)
+        body: JSON.stringify(item),
       })
       const response = await temp.json()
       alert(response.message)
       console.log(response.books)
       setInventoryItems(response.books)
-      setItem({...item,showModal:!item.showModal})
+      setItem({ ...item, showModal: !item.showModal })
     } catch (err) {
       console.log(err)
     }
@@ -42,7 +75,15 @@ function Inventory() {
       const response = await temp.json()
       setInventoryItems(response.message)
       alert('The Book Successfully added')
-      setItem({ ...item, showModal: !item.showModal, update: false })
+      setItem({
+        title: '',
+        author: '',
+        price: '',
+        stock: '',
+        image: '',
+        showModal: false,
+        update: false,
+      })
     } catch (err) {
       console.log(err)
     }
@@ -77,8 +118,12 @@ function Inventory() {
                   type="text"
                   className="inventorySearchBox"
                   name="search"
+                  value={search}
+                  onChange={(e) => {
+                    setSearch(e.target.value)
+                  }}
                 />
-                <button className="inventorySearchButton">
+                <button className="inventorySearchButton" onClick={searchItem}>
                   <Search
                     style={{ fontWeight: 'bold !important', fontSize: '2rem' }}
                   ></Search>
@@ -125,6 +170,14 @@ function Inventory() {
                   placeholder="Enter Author of the book"
                 />
                 <input
+                  type="file"
+                  onChange={(e) => {
+                    imageUpload(e)
+                  }}
+                  name="image"
+                  className="inventoryModalImage"
+                />
+                <input
                   type="text"
                   className="inventoryModalInput"
                   name="price"
@@ -153,7 +206,7 @@ function Inventory() {
                 ) : (
                   <button
                     className="inventoryModalButton"
-                    style={{ backgroundColor: 'darkgreen' }}
+                    style={{ backgroundColor: 'rgb(99, 0, 192)' }}
                     onClick={() => {
                       console.log(item._id)
                       updateItem(item._id)

@@ -3,6 +3,7 @@ const express = require('express')
 const router = express.Router()
 const tokenAuth = require('../../Middlewares/TokenAuthorize')
 const Book = require('../../Models/book')
+const cloudinary = require('cloudinary').v2
 //CRUD routes
 
 //create an item entry
@@ -17,10 +18,12 @@ router.post('/newBook', async (req, res) => {
         .status(403)
         .json({ success: false, message: 'Item already exits' })
     }
+
     const newBook = new Book({
       title: req.body.title,
       author: req.body.author,
       price: req.body.price,
+      image: req.body.image,
       reorderThreshold: req.body.reorderThreshold,
       stopOrder: req.body.stopOrder,
       stock: req.body.stock,
@@ -43,13 +46,11 @@ router.put('/:id/bookUpdate', async (req, res) => {
     }
     await book.update({ $set: req.body })
     const books = await Book.find({})
-    return res
-      .status(200)
-      .json({
-        success: true,
-        message: 'Item updated successfully',
-        books: books,
-      })
+    return res.status(200).json({
+      success: true,
+      message: 'Item updated successfully',
+      books: books,
+    })
   } catch (err) {
     console.log(err)
     res.status(500).json(err)
@@ -103,13 +104,11 @@ router.delete('/:id/bookDelete', async (req, res) => {
     }
     await book.deleteOne()
     const response = await Book.find({})
-    return res
-      .status(200)
-      .json({
-        success: true,
-        message: 'Item deleted successfully',
-        books: response,
-      })
+    return res.status(200).json({
+      success: true,
+      message: 'Item deleted successfully',
+      books: response,
+    })
   } catch (err) {
     console.log(err)
     res.status(500).json(err)

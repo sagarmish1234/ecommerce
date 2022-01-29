@@ -8,6 +8,7 @@ export const Item = React.createContext({
   author: '',
   price: '',
   stock: '',
+  image:"",
   showModal: false,
   update:false
 })

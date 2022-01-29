@@ -6,6 +6,7 @@ const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
 const helmet = require("helmet")
 const morgan = require("morgan")
+const cloudinary = require("cloudinary").v2
 require("dotenv").config()
 
 
@@ -15,7 +16,11 @@ app.use(helmet())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(morgan("common"))
-
+cloudinary.config({
+    cloud_name:"sagarmish1234",
+    api_key:"515232586982562",
+    api_secret:"qKgVAO5cBR7wRYaZshv3YOFc6JA"
+})
 //Database connect
 mongoose.connect(process.env.mongo_URL,()=>{
     console.log("The database has been connect successfully")
