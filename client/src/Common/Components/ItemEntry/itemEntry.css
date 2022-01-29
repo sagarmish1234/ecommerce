@@ -1,12 +1,19 @@
 .itemContainer{
     display: grid;
     grid-template-rows: 1fr;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     font-size: 1.5rem;
     margin-bottom: 20px;
+    align-items: center;
     justify-items: center;
 }
 
+.itemImage{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: contain;
+}
 .itemDeleteButton{
     width: 80%;
     border: none;

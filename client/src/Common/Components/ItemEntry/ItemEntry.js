@@ -4,7 +4,7 @@ import url from '../../CustomerConfig'
 import { InventoryItems } from '../../Pages/Home/ManagerHome/ManagerHome'
 import { Item } from '../../Pages/Home/ManagerHome/ManagerHome'
 function ItemEntry(props) {
-  const { title, author, price, stock } = props.item
+  const { title, author, price, stock,image } = props.item
   const [inventoryItems, setInventoryItems] = useContext(InventoryItems)
   const [item, setItem] = useContext(Item)
   const deleteItem = async () => {
@@ -45,6 +45,7 @@ function ItemEntry(props) {
     <>
       <div className="itemContainer">
         <span className="itemTitle">{title}</span>
+        <img src={image} alt="img" className='itemImage'/>
         <span className="itemAuthor">{author}</span>
         <span className="itemPrice">&#8377;{price}</span>
         <span className="itemStock">{stock}</span>
