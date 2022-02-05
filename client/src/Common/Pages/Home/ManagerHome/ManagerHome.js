@@ -14,7 +14,6 @@ export const Item = React.createContext({
 })
 
 function ManagerHome() {
-  const [inventoryItems, setInventoryItems] = useState([])
   const [item, setItem] = useState({
     title: '',
     author: '',
@@ -24,14 +23,12 @@ function ManagerHome() {
   })
   return (
     <>
-      <InventoryItems.Provider value={[inventoryItems, setInventoryItems]}>
         <Item.Provider value={[item, setItem]}>
           <Routes>
             <Route path="/inventory" element={<Inventory></Inventory>}></Route>
             <Route path="/orders" element={<Orders></Orders>}></Route>
           </Routes>
         </Item.Provider>
-      </InventoryItems.Provider>
     </>
   )
 }

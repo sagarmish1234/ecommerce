@@ -7,6 +7,11 @@ const CustomerSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
+    cart: {
+      type: Array,
+      required: true,
+      default: [],
+    },
     password: {
       type: String,
       required: true,

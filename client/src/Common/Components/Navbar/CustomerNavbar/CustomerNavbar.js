@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react'
 import './customerNavbar.css'
 import { Link, useNavigate } from 'react-router-dom'
-import { UserDetails } from '../../../../App'
+import { UserDetails,Cart } from '../../../../App'
+
 import {
   Search,
   ShoppingCart,
@@ -16,6 +17,7 @@ import url from '../../../CustomerConfig'
 function CustomerNavbar() {
   const [userDetails, setUserDetails] = useContext(UserDetails)
   const [search, setSearch] = useState('')
+  const [cart,setCart] = useContext(Cart)
   const naviagte = useNavigate()
   useEffect(() => {
     async function FetchData() {
@@ -29,6 +31,7 @@ function CustomerNavbar() {
       } catch (err) {
         console.error(err)
       }
+      
     }
     if (!localStorage.inventory) FetchData()
   }, [])
@@ -129,7 +132,7 @@ function CustomerNavbar() {
           </Link>
           <li className="navbarLink">
             <span className="navbarCart">
-              <span className="cartQty">0</span>
+              <span className="cartQty">{cart.length}</span>
               <ShoppingCart className="shoppingCartIcon"></ShoppingCart>
             </span>
             <span>Cart</span>

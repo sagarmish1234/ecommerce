@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from 'react'
 import './inventory.css'
 import { Search } from '@mui/icons-material'
 import { UserDetails } from '../../../App'
-import { InventoryItems } from '../../Pages/Home/ManagerHome/ManagerHome'
+import { InventoryItems } from '../../../App'
 import url from '../../CustomerConfig'
 import ItemEntry from '../ItemEntry/ItemEntry'
 import { Item } from '../../Pages/Home/ManagerHome/ManagerHome'
@@ -66,7 +66,7 @@ function Inventory() {
   }
   const AddItem = async (e) => {
     e.preventDefault()
-    
+
     try {
       const temp = await fetch(`${url}/api/inventory/newBook`, {
         method: 'POST',
@@ -161,6 +161,14 @@ function Inventory() {
             <div className="inventoryModalContainer">
               <div className="inventoryModalContent">
                 <input
+                  type="file"
+                  onChange={(e) => {
+                    imageUpload(e)
+                  }}
+                  name="image"
+                  className="inventoryModalImage"
+                />
+                <input
                   type="text"
                   className="inventoryModalInput"
                   name="title"
@@ -177,14 +185,6 @@ function Inventory() {
                   value={item.author}
                   required
                   placeholder="Enter Author of the book"
-                />
-                <input
-                  type="file"
-                  onChange={(e) => {
-                    imageUpload(e)
-                  }}
-                  name="image"
-                  className="inventoryModalImage"
                 />
                 <input
                   type="text"

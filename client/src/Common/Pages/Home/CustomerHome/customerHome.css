@@ -1,0 +1,26 @@
+.customerHomeContainer {
+  width: 100%;
+  height: max-content;
+  color: white;
+  display: flex;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+::-webkit-scrollbar{
+    width: 10px;
+}
+::-webkit-scrollbar-track{
+  background-color:rgb(241, 239, 239);
+}
+.displayItems {
+  display: grid;
+  flex: 8;
+  row-gap: 0px;
+  row-gap: 20px;
+  column-gap: 30px;
+  margin: 0px 30px;
+  grid-auto-rows: 400px;
+  grid-template-columns: repeat(4, 1fr);
+  justify-items: center;
+}

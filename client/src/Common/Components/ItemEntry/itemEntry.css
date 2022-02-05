@@ -7,10 +7,13 @@
     align-items: center;
     justify-items: center;
 }
+.itemTitle , .itemAuthor,.itenPrice{
+    text-align: center;
 
+}
 .itemImage{
-    width: 80px;
-    height: 80px;
+    width: 130px;
+    height: 130px;
     border-radius: 50%;
     object-fit: contain;
 }
