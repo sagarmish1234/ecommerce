@@ -1,0 +1,15 @@
+.managerHomeContainer{
+    display: flex;
+    position: relative;
+    height: 100%;
+}
+.managerHomeLeft{
+    flex: 1;
+    height: 100vh;
+}
+.managerHomeRight{
+    flex:11;
+    display: block;
+    width: 100%;
+    background-color: #1d3557;
+}

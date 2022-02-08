@@ -1,0 +1,75 @@
+.inventoryContainer {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
+.inventoryHeader {
+  width: 100%;
+  height: 40px;
+  background-color: #074d79;
+  display: flex;
+  padding: 0 20px;
+}
+
+.inventoryHeaderLeft {
+  flex: 9;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inventorySearchBox {
+  height: 80%;
+  width: 80%;
+  border-radius: 3px 0px 0px 3px;
+  outline: none;
+  border: none;
+  padding: 10px;
+  font-size: 1.4rem;
+}
+
+.inventorySearchIcon {
+  font-size: 2rem !important;
+  color: white;
+  width: 7% !important;
+  border-radius: 0px 3px 3px 0px;
+  display: block !important;
+  height: 80% !important;
+  background-color: #0081a7;
+  cursor: pointer;
+}
+
+.inventoryHeaderRight {
+  flex: 2;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inventoryAddButton {
+  width: 100%;
+  height: 80%;
+  border-radius: 3px;
+  border: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+  background-color: #0081a7;
+  justify-content: center;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.inventoryAddIcon{
+    font-size: 1.5rem !important;
+}
+
+
+.inventoryModal{
+    position: absolute;
+    
+}

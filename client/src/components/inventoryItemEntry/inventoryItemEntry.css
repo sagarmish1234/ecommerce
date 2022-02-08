@@ -1,0 +1,49 @@
+.inventoryItemEntryContainer {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  align-items: center;
+  justify-items: center;
+  width: 97%;
+  margin: auto;
+  padding: 10px 0px;
+  margin-top: 15px;
+  border-radius: 5px;
+  color: #1b365c;
+  background-color: #7ea1c4;
+  font-size: 1.5rem;
+}
+
+.inventoryItemShowDetails{
+    width: 70%;
+    font-size: 1.1rem;
+    outline: none;
+    border: none;
+    height: 30px;
+    border-radius: 3px;
+    background-color: #008594;
+    color: white;
+    cursor: pointer;
+}
+
+.inventoryItemEntryDeleteButton{
+    width: 70%;
+    font-size: 1.1rem;
+    outline: none;
+    border: none;
+    height: 30px;
+    border-radius: 3px;
+    background-color: rgba(255, 24, 24, 0.932);
+    color: white;
+    cursor: pointer;
+}
+.inventoryItemEntryUpdateButton{
+    background-color: #0340DE;
+    width: 70%;
+    font-size: 1.1rem;
+    outline: none;
+    border: none;
+    height: 30px;
+    border-radius: 3px;
+    color: white;
+    cursor: pointer;
+}
