@@ -1,7 +1,10 @@
 import './App.css'
 import React, { useState, useEffect } from 'react'
 import ManagerHome from './pages/home/managerHome/ManagerHome'
-import { BrowserRouter as Router } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  useNavigate
+} from 'react-router-dom'
 import url from './config'
 import Home from './pages/home/Home'
 
@@ -14,11 +17,12 @@ export const Cart = React.createContext([])
 //Component
 function App() {
   const [items, setItems] = useState({})
-  const [user, setUser] = useState()
+  const [user, setUser] = useState('')
   const [inventory, setInventory] = useState([])
   const [modal, setModal] = useState(false)
   const [cart, setCart] = useState([])
-
+  const navigate = useNavigate()
+  
   useEffect(() => {
     const fetchData = async () => {
       console.log('fetching data')
@@ -43,27 +47,26 @@ function App() {
 
     if (localStorage.user) {
       setUser(JSON.parse(localStorage.user))
+      navigate('/inventory')
     }
   }, [])
 
   return (
     <>
-      <Router>
-        <InventoryItems.Provider value={[inventory, setInventory]}>
-          <ModalShow.Provider value={[modal, setModal]}>
-            <User.Provider value={[user, setUser]}>
-              <Cart.Provider value={[cart, setCart]}>
-                <Item.Provider value={[items, setItems]}>
-                  <User.Provider value={[user, setUser]}>
-                    <Home></Home>
-                    {/* <ManagerHome></ManagerHome> */}
-                  </User.Provider>
-                </Item.Provider>
-              </Cart.Provider>
-            </User.Provider>
-          </ModalShow.Provider>
-        </InventoryItems.Provider>
-      </Router>
+      <InventoryItems.Provider value={[inventory, setInventory]}>
+        <ModalShow.Provider value={[modal, setModal]}>
+          <User.Provider value={[user, setUser]}>
+            <Cart.Provider value={[cart, setCart]}>
+              <Item.Provider value={[items, setItems]}>
+                <User.Provider value={[user, setUser]}>
+                  <Home></Home>
+                  {/* <ManagerHome></ManagerHome> */}
+                </User.Provider>
+              </Item.Provider>
+            </Cart.Provider>
+          </User.Provider>
+        </ModalShow.Provider>
+      </InventoryItems.Provider>
     </>
   )
 }

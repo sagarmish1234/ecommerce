@@ -3,8 +3,10 @@ import './managerNavbar.css'
 import { Logout } from '@mui/icons-material'
 import { NavLink } from 'react-router-dom'
 import { User } from '../../../App'
+import { useNavigate } from 'react-router-dom'
 
 function ManagerNavbar() {
+  const navigation = useNavigate()
   const [user, setUser] = useContext(User)
   return (
     <>
@@ -23,14 +25,13 @@ function ManagerNavbar() {
           <li
             className="managerNavbarLink"
             style={{ display: 'flex', alignItems: 'center' }}
+            onClick={() => {
+              localStorage.removeItem('user')
+              navigation('/')
+              setUser('')
+            }}
           >
-            <Logout
-              style={{ marginRight: '2px' }}
-              onClick={() => {
-                localStorage.removeItem('user')
-                setUser('')
-              }}
-            ></Logout>
+            <Logout style={{ marginRight: '2px' }}></Logout>
             Logout
           </li>
         </ul>

@@ -4,6 +4,7 @@
     height: 100%;
     flex-direction: column;
     align-content: center;
+    position: fixed;
     /* padding: 0px 20px; */
 }
 

@@ -20,7 +20,7 @@ mongoose.connect(db, { useNewUrlParser: true },() => {
 })
 
 //routes
-app.use('/api/customer', require('./routes/userRoute'));
+app.use('/api/user', require('./routes/userRoute'));
 app.use('/api/inventory', require('./routes/inventoryRoute'));
 app.use('/api/order', require('./routes/orderRoute'));
 

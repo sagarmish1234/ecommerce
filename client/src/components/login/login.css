@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Redressed&display=swap');
+
+.loginContainer {
+  width: 100%;
+  position: relative;
+  height: calc(100vh - 60px);
+  background-color: #dcdddc;
+  padding-top: 40px;
+  overflow-x: hidden;
+}
+
+.loginForm {
+  width: 500px;
+  height: 500px;
+  display: flex;
+  margin: auto;
+  border-radius: 10px;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0px;
+  padding-top: 60px;
+  box-shadow: 6px 5px 13px -3px rgba(0, 0, 0, 0.79);
+  -webkit-box-shadow: 6px 5px 13px -3px rgba(0, 0, 0, 0.79);
+  -moz-box-shadow: 6px 5px 13px -3px rgba(0, 0, 0, 0.79);
+  background-color: #f8f9fa;
+}
+
+.loginFormHeader{
+    font-weight: bold;
+    color: #212529;
+    margin-bottom: 20px;
+}
+.loginFormHeaderTitle{
+    font-family: 'Redressed',cursive;
+    font-size: 3.5rem;
+}
+
+.loginFormInputs {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+.loginFormInput{
+    width: 250px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    padding: 0px 10px;
+    margin-bottom: 10px;
+}
+.loginFormInput:focus{
+    border: 1.5px solid #007bff;
+    outline: none;
+    transform: scale(1.2);
+    transition-duration: .3s;
+}
+
+
+.loginFormLoginButton {
+  width: 250px;
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+  padding: 0px 10px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.loginFormFooter {
+  margin-top: 40px;
+}

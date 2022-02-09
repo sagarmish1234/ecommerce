@@ -1,0 +1,23 @@
+.sideModalContainer {
+  position: absolute;
+  right: 10px;
+  width: max-content;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #f8f9fa;
+  box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.75);
+  transform: translateX(100%) translateX(10px);
+  transition-duration: .5s;
+}
+
+.sideModalContainer.show{
+    transform: translateX(0px);
+    transition-duration:.5s;
+}
+    
+
+.sideModal {
+  font-size: 2rem;
+}

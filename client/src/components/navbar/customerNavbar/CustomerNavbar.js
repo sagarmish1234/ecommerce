@@ -15,10 +15,6 @@ function CustomerNavbar() {
   const [cart, setCart] = useContext(Cart)
   const [user, setUser] = useContext(User)
 
-  useEffect(() => {
-    console.log(user)
-  }, [user])
-
   return (
     <div className="customerNavbarContainer">
       <div className="customerNavbarBrand">
@@ -53,7 +49,7 @@ function CustomerNavbar() {
             className="customerNavbarLink"
             style={{ display: 'flex', alignItems: 'center' }}
           >
-              <Login></Login>Login
+              <Login></Login>Sign in
           </li>
             </Link>
         )}

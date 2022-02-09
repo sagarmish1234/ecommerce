@@ -7,8 +7,6 @@ const checkToken = require('../middleware/auth')
 const bcrypt = require('bcrypt')
 require('dotenv').config()
 
-
-
 //customer register
 router.post('/customer/add', async (req, res) => {
   const customer = new Customer({
@@ -28,7 +26,6 @@ router.post('/customer/add', async (req, res) => {
   }
 })
 
-
 //manager register
 router.post('/manager/add', async (req, res) => {
   const manager = new Manager({
@@ -46,9 +43,8 @@ router.post('/manager/add', async (req, res) => {
   }
 })
 
-
 //user login
-router.post('/login', checkToken, async (req, res) => {
+router.post('/login', async (req, res) => {
   const customer = await Customer.findOne({ username: req.body.username })
   const manager = await Manager.findOne({ username: req.body.username })
   if (!customer && !manager) {
@@ -63,17 +59,21 @@ router.post('/login', checkToken, async (req, res) => {
       return res.status(401).json({ message: 'Password is incorrect' })
     }
     const token = jwt.sign({ _id: customer._id }, process.env.secret)
-    res.header('auth-token', token).json({ ...customer, isManager: false })
+    res
+      .header('auth-token', token)
+      .json({ ...customer, isManager: false, message: 'Login Successful',success:true })
   } else if (manager) {
     const validPassword = await bcrypt.compare(
       req.body.password,
       manager.password,
     )
     if (!validPassword) {
-      return res.status(401).json({ message: 'Password is incorrect' })
+      return res
+        .status(401)
+        .json({ message: 'Password is incorrect', message: 'Login Successful',success:true })
     }
     const token = jwt.sign({ _id: manager._id }, process.env.secret)
-    res.header('auth-token', token).json({ token, isManager: true })
+    res.header('auth-token', token).json({ ...manager, isManager: true ,message: 'Login Successful',success:true })
   }
 })
 

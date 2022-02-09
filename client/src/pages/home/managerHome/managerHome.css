@@ -1,15 +1,19 @@
 .managerHomeContainer{
     display: flex;
     position: relative;
-    height: 100%;
+    height: max-content;
+    min-height: 100vh;
+
 }
 .managerHomeLeft{
     flex: 1;
+    
     height: 100vh;
 }
 .managerHomeRight{
     flex:11;
     display: block;
     width: 100%;
+    margin-left: 78px;
     background-color: #1d3557;
 }

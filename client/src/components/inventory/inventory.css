@@ -1,6 +1,5 @@
 .inventoryContainer {
   width: 100%;
-  height: 100vh;
   position: relative;
 }
 
@@ -70,6 +69,11 @@
 
 
 .inventoryModal{
-    position: absolute;
-    
+    position: absolute;   
+}
+
+
+.inventoryBody{
+  min-height: 100%;
+  height: max-content;
 }
