@@ -45,7 +45,10 @@ router.get('/book/:title/search', async (req, res) => {
   const book = await Book.find({
     title: { $regex: req.params.title, $options: 'i' },
   })
-  res.json(book)
+  const book2 = await Book.find({
+    author: { $regex: req.params.title, $options: 'i' },
+  })
+  res.json(book.concat(book2))
 })
 
 router.delete('/book/:id', async (req, res) => {

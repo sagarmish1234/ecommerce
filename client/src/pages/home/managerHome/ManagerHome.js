@@ -1,7 +1,7 @@
 import './managerHome.css'
 import ManagerNavbar from '../../../components/navbar/managerNavbar/ManagerNavbar'
 import Inventory from '../../../components/inventory/Inventory'
-import Order from '../../../components/order/Order'
+import Order from '../../../components/orders/Orders'
 import { Routes, Route } from 'react-router-dom'
 function ManagerHome() {
 

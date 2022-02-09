@@ -1,0 +1,73 @@
+.customerNavbarContainer {
+  display: flex;
+  background-color: #121212;
+  color: white;
+  padding: 0px 20px;
+}
+
+.customerNavbarBrand {
+  display: flex;
+  flex: 2;
+  justify-content: left;
+  align-items: center;
+}
+
+.customerNavbarBrandImage {
+  width: 60px;
+  height: 60px;
+  margin-right: 7px;
+}
+
+.customerNavbarSearch {
+  flex: 5;
+  display: flex;
+  align-items: center;
+}
+.customerNavbarSearchBox {
+  width: 90%;
+  height: 35px;
+  border-radius: 5px 0px 0px 5px;
+  outline: none;
+  border: none;
+  padding-left: 10px;
+}
+.customerNavbarSearchIcon {
+  padding: 0px 5px;
+  display: block;
+  height: 35px;
+  background-color: #6847dd;
+  font-size: 2.15rem !important;
+  border-radius: 0px 5px 5px 0px;
+}
+
+.customerNavbarLinks {
+  flex: 5;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  list-style: none;
+}
+
+.customerNavbarLink {
+  margin-right: 20px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  height: 100%;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+}
+.customerNavbarLink:hover {
+  background-color: #292828;
+}
+
+.cart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px 0px;
+}
+
+.customerNavbarCartIcon {
+  font-size: 1.75rem !important;
+}

@@ -5,15 +5,19 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import url from './config'
 import Home from './pages/home/Home'
 
+//exports
 export const InventoryItems = React.createContext([])
 export const Item = React.createContext({})
 export const User = React.createContext({})
 export const ModalShow = React.createContext(false)
+export const Cart = React.createContext([])
+//Component
 function App() {
   const [items, setItems] = useState({})
-  const [user, setUser] = useState({})
+  const [user, setUser] = useState()
   const [inventory, setInventory] = useState([])
   const [modal, setModal] = useState(false)
+  const [cart, setCart] = useState([])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,6 +40,10 @@ function App() {
         ),
       )
     } else fetchData()
+
+    if (localStorage.user) {
+      setUser(JSON.parse(localStorage.user))
+    }
   }, [])
 
   return (
@@ -44,10 +52,14 @@ function App() {
         <InventoryItems.Provider value={[inventory, setInventory]}>
           <ModalShow.Provider value={[modal, setModal]}>
             <User.Provider value={[user, setUser]}>
-              <Item.Provider value={[items, setItems]}>
-                <Home></Home>
-                {/* <ManagerHome></ManagerHome> */}
-              </Item.Provider>
+              <Cart.Provider value={[cart, setCart]}>
+                <Item.Provider value={[items, setItems]}>
+                  <User.Provider value={[user, setUser]}>
+                    <Home></Home>
+                    {/* <ManagerHome></ManagerHome> */}
+                  </User.Provider>
+                </Item.Provider>
+              </Cart.Provider>
             </User.Provider>
           </ModalShow.Provider>
         </InventoryItems.Provider>
