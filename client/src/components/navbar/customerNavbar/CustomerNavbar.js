@@ -8,6 +8,7 @@ import {
   Person,
 } from '@mui/icons-material'
 import { InventoryItems, Cart, User } from '../../../App'
+import { Link } from 'react-router-dom'
 
 function CustomerNavbar() {
   const [inventory, setInvetory] = useContext(InventoryItems)
@@ -38,18 +39,38 @@ function CustomerNavbar() {
       </div>
       <ul className="customerNavbarLinks">
         {!user && (
+          <Link
+            to={'/signin'}
+            style={{
+              textDecoration: 'none',
+              color: 'white',
+              display: 'flex',
+              alignItems: 'center',
+              height: '100%',
+            }}
+          >
           <li
             className="customerNavbarLink"
             style={{ display: 'flex', alignItems: 'center' }}
           >
-            <Login></Login>Login
+              <Login></Login>Login
           </li>
+            </Link>
         )}
-        {!user && <li className="customerNavbarLink">Register</li>}
+        {!user && (
+          <Link
+              to="/register"
+              style={{ textDecoration: 'none', color: 'white',height:"100%" }}
+            >
+          <li className="customerNavbarLink">
+              Register
+          </li>
+            </Link>
+        )}
         <li className="customerNavbarLink">
-          <span className='cart'>
-          <span>{cart.length}</span>
-          <ShoppingCart className="customerNavbarCartIcon"></ShoppingCart>
+          <span className="cart">
+            <span>{cart.length}</span>
+            <ShoppingCart className="customerNavbarCartIcon"></ShoppingCart>
           </span>
           Cart
         </li>

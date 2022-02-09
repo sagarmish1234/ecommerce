@@ -7,6 +7,7 @@ import DisplayItems from '../../../components/displayItems/DisplayItems'
 import ProtectedRoute from '../../../components/protectedRoute/ProtectedRoute'
 import CustomerOrders from '../../../components/customerOrders/CustomerOrders'
 import { Routes, Route } from 'react-router-dom'
+import Register from '../../../components/register/Register'
 
 function CustomerHome() {
   return (
@@ -15,10 +16,12 @@ function CustomerHome() {
       <Routes>
         <Route path="/" element={<DisplayItems></DisplayItems>}></Route>
         <Route path="/signin" element={<Login></Login>}></Route>
+        <Route path="/register" element={<Register></Register>}></Route>
         <Route path="/cart" element={<Cart></Cart>}></Route>
         <Route path="/" element={<ProtectedRoute></ProtectedRoute>}>
           <Route
-           exact path="/orders"
+            exact
+            path="/orders"
             element={<CustomerOrders></CustomerOrders>}
           ></Route>
         </Route>
