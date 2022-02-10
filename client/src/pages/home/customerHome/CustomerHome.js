@@ -14,9 +14,18 @@ import { AnimatePresence } from 'framer-motion'
 function CustomerHome() {
   const location = useLocation()
   return (
-    <>
+    <motion.div
+      exit={{
+        x: '100vw',
+      }}
+      location={location}
+      key={'customerHome'}
+      transition={{
+        duration: '.7',
+      }}
+    >
       <CustomerNavbar></CustomerNavbar>
-      <AnimatePresence exitBeforeEnter={true}>
+      <AnimatePresence exitBeforeEnter>
         <Routes key={location.pathname} location={location}>
           <Route path="/" element={<DisplayItems></DisplayItems>}></Route>
           <Route path="/signin" element={<Login></Login>}></Route>
@@ -31,7 +40,7 @@ function CustomerHome() {
           </Route>
         </Routes>
       </AnimatePresence>
-    </>
+    </motion.div>
   )
 }
 

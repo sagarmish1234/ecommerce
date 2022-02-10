@@ -6,7 +6,7 @@ import InventoryModal from '../inventoryModal/InventoryModal'
 import { ModalShow } from '../../App'
 import InventoryItemEntry from '../inventoryItemEntry/InventoryItemEntry'
 import url from '../../config'
-
+import { AnimatePresence } from 'framer-motion'
 
 function Inventory() {
   const [items, setItems] = useContext(Item)
@@ -15,15 +15,14 @@ function Inventory() {
   const [search, setSearch] = useState('')
 
   const handleSearch = async (e) => {
-    if(!search)
-    return
+    if (!search) return
 
     try {
-      const temp = await fetch(`${url}/api/inventory/book/${search}/search`,{
+      const temp = await fetch(`${url}/api/inventory/book/${search}/search`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-        }
+        },
       })
       const response = await temp.json()
       setInventory(response)
@@ -63,14 +62,15 @@ function Inventory() {
           </div>
         </div>
         <div className="inventoryBody">
-        
           {inventory.map((item, index) => {
             return (
               <InventoryItemEntry key={index} item={item}></InventoryItemEntry>
             )
           })}
         </div>
-        {modal && <InventoryModal></InventoryModal>}
+        <AnimatePresence>
+          {modal && <InventoryModal></InventoryModal>}
+        </AnimatePresence>
       </div>
     </>
   )

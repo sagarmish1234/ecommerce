@@ -6,10 +6,11 @@ import SideModal from '../sideModal/SideModal'
 import url from '../../config'
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import { loginVariants } from '../../animationVariants/variants'
 
 function Login() {
   const [user, setUser] = useContext(User)
-  const [message, setMessage] = useState('Test message')
+  const [message, setMessage] = useState('')
   const navigate = useNavigate()
   const [person, setPerson] = useState({
     username: '',
@@ -17,29 +18,7 @@ function Login() {
     showPassword: false,
   })
 
-  const pageVariants = {
-    initial: {
-      opacity: 0,
-      x: "100vh",
-      scale: 1.2
-    },
-    in: {
-      opacity: 1,
-      x: 0,
-      scale: 1
-    },
-    out: {
-      opacity: 0,
-      x: "100vh",
-      scale: 1.2
-    }
-  };
-
   const ModalShow = () => {
-    document.querySelector('.sideModalContainer').classList.add('show')
-    setTimeout(() => {
-      document.querySelector('.sideModalContainer').classList.remove('show')
-    }, 1000)
     setTimeout(() => {
       setMessage('')
     }, 1500)
@@ -82,15 +61,15 @@ function Login() {
   return (
     <div className="loginContainer">
       <motion.div
-        variants={pageVariants}
+        variants={loginVariants}
         initial="initial"
         animate="in"
         exit="out"
         transition={{
-          duration:.5
+          duration: 0.3,
         }}
       >
-        {<SideModal message={message}></SideModal>}
+        {message && <SideModal message={message}></SideModal>}
         <form className="loginForm">
           <div className="loginFormHeader">
             <h1 className="loginFormHeaderTitle">Sign in</h1>

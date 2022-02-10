@@ -4,6 +4,7 @@ import { ModalShow, Item, InventoryItems } from '../../App'
 import url from '../../config'
 import ItemDescription from '../itemDescription/ItemDescription'
 import React from 'react'
+import { AnimatePresence } from 'framer-motion'
 export const ShowDescription = React.createContext(false)
 
 function InventoryItemEntry(props) {
@@ -28,7 +29,10 @@ function InventoryItemEntry(props) {
       const response = await temp.json()
       console.log(response)
       setInventory(inventory.filter((item) => item._id !== props.item._id))
-      localStorage.setItem('inventory', JSON.stringify(inventory.filter((item) => item._id !== props.item._id)))
+      localStorage.setItem(
+        'inventory',
+        JSON.stringify(inventory.filter((item) => item._id !== props.item._id)),
+      )
     } catch (e) {}
   }
 
@@ -57,10 +61,12 @@ function InventoryItemEntry(props) {
         >
           Update
         </button>
-        <ShowDescription.Provider value={[showDescription,setShowDescription]}>
-          {showDescription && (
-            <ItemDescription item={props.item}></ItemDescription>
-          )}
+        <ShowDescription.Provider value={[showDescription, setShowDescription]}>
+          <AnimatePresence>
+            {showDescription && (
+              <ItemDescription item={props.item}></ItemDescription>
+            )}
+          </AnimatePresence>
         </ShowDescription.Provider>
       </div>
     </>

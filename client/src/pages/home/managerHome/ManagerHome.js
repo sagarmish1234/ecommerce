@@ -2,12 +2,12 @@ import './managerHome.css'
 import ManagerNavbar from '../../../components/navbar/managerNavbar/ManagerNavbar'
 import Inventory from '../../../components/inventory/Inventory'
 import Order from '../../../components/orders/Orders'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
 
 function ManagerHome() {
+  const location = useLocation();
   return (
-    <>
       <motion.div
         initial={{
           x: '-100vw',
@@ -15,12 +15,14 @@ function ManagerHome() {
         animate={{
           x: 0,
         }}
+        key={"managerHome"}
+        location={location}
         transition={{
-          duration: 0.5,
+          duration: 0.7,
           delay: 0,
         }}
         exit={{
-          opacity: 0,
+          x: '-100vw',
         }}
         className="managerHomeContainer"
       >
@@ -34,7 +36,6 @@ function ManagerHome() {
           </Routes>
         </div>
       </motion.div>
-    </>
   )
 }
 

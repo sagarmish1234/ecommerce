@@ -13,8 +13,13 @@ function Register() {
       // transition={{
       //   duration: '1s',
       // }}
+      className='registerContainer'
     >
-      Register
+      <form className="registerForm">
+
+
+        
+      </form>
     </motion.div>
   )
 }

@@ -1,15 +1,18 @@
 import './inventoryModal.css'
-import { Close } from '@mui/icons-material'
+import { Close, Opacity } from '@mui/icons-material'
 import { ModalShow, Item, InventoryItems } from '../../App'
 import { useContext, useState } from 'react'
 import url from '../../config'
+import { useLocation } from 'react-router-dom'
 import LoadingSpin from 'react-loading-spin'
+import { motion, AnimatePresence } from 'framer-motion'
 
 function InventoryModal() {
   const [modal, setModal] = useContext(ModalShow)
   const [item, setItems] = useContext(Item)
   const [showSpin, setShowSpin] = useState(false)
   const [inventory, setInventory] = useContext(InventoryItems)
+  const location = useLocation()
   const handleChange = (e) => {
     setItems({ ...item, [e.target.name]: e.target.value })
   }
@@ -92,89 +95,105 @@ function InventoryModal() {
   }
 
   return (
-    <div className="inventoryModalBackground">
-      <Close
-        className="inventoryModalCloseButton"
-        onClick={() => setModal(false)}
-      ></Close>
-      <form className="inventoryModalContainer">
-        <label htmlFor="image" className="inventoryModalImage">
-          Upload Image &nbsp;
-          {showSpin && <LoadingSpin size="20px" width="3px"></LoadingSpin>}
-        </label>
-        <input
-          type="file"
-          onChange={(e) => {
-            imageUpload(e)
-          }}
-          id="image"
-          hidden={true}
-          name="image"
-        />
+      <motion.div
+        initial={{
+          opacity: 0,
+        }}
+        animate={{
+          opacity: 1,
+        }}
+        transition={{
+          duration: 0.3,
+        }}
+        key={"inmodasj"}
+        location={location}
+        exit={{
+          opacity:0,
+        }}
+        className="inventoryModalBackground"
+      >
+        <Close
+          className="inventoryModalCloseButton"
+          onClick={() => setModal(false)}
+        ></Close>
+        <form className="inventoryModalContainer">
+          <label htmlFor="image" className="inventoryModalImage">
+            Upload Image &nbsp;
+            {showSpin && <LoadingSpin size="20px" width="3px"></LoadingSpin>}
+          </label>
+          <input
+            type="file"
+            onChange={(e) => {
+              imageUpload(e)
+            }}
+            id="image"
+            hidden={true}
+            name="image"
+          />
 
-        <input
-          type="text"
-          className="inventoryModalInput"
-          name="title"
-          value={item.title}
-          onChange={handleChange}
-          placeholder="Enter the Title"
-        />
-        <input
-          type="text"
-          className="inventoryModalInput"
-          name="author"
-          value={item.author}
-          onChange={handleChange}
-          placeholder="Enter the Author"
-        />
-        <input
-          type="text"
-          onChange={handleChange}
-          className="inventoryModalInput"
-          name="price"
-          value={item.price}
-          placeholder="Enter the Price"
-        />
-        <input
-          type="text"
-          onChange={handleChange}
-          className="inventoryModalInput"
-          name="stock"
-          value={item.stock}
-          placeholder="Enter the Stock"
-        />
-        <textarea
-          name="description"
-          onChange={handleChange}
-          cols="30"
-          rows="10"
-          value={item.description}
-          placeholder="Enter the Description"
-          style={{ height: '100px' }}
-          className="inventoryModalInput"
-        ></textarea>
-        {!item.update && (
-          <button className="inventoryModalButton" onClick={AddItem}>
-            Add &nbsp;
-            {showSpin && <LoadingSpin size="20px" width="3px"></LoadingSpin>}
-          </button>
+          <input
+            type="text"
+            className="inventoryModalInput"
+            name="title"
+            value={item.title}
+            onChange={handleChange}
+            placeholder="Enter the Title"
+          />
+          <input
+            type="text"
+            className="inventoryModalInput"
+            name="author"
+            value={item.author}
+            onChange={handleChange}
+            placeholder="Enter the Author"
+          />
+          <input
+            type="text"
+            onChange={handleChange}
+            className="inventoryModalInput"
+            name="price"
+            value={item.price}
+            placeholder="Enter the Price"
+          />
+          <input
+            type="text"
+            onChange={handleChange}
+            className="inventoryModalInput"
+            name="stock"
+            value={item.stock}
+            placeholder="Enter the Stock"
+          />
+          <textarea
+            name="description"
+            onChange={handleChange}
+            cols="30"
+            rows="10"
+            value={item.description}
+            placeholder="Enter the Description"
+            style={{ height: '100px' }}
+            className="inventoryModalInput"
+          ></textarea>
+          {!item.update && (
+            <button className="inventoryModalButton" onClick={AddItem}>
+              Add &nbsp;
+              {showSpin && <LoadingSpin size="20px" width="3px"></LoadingSpin>}
+            </button>
+          )}
+          {item.update && (
+            <button className="inventoryModalButton" onClick={UpdateItem}>
+              Update &nbsp;
+              {showSpin && <LoadingSpin size="20px" width="3px"></LoadingSpin>}
+            </button>
+          )}
+        </form>
+        {item.image && (
+          <img
+            src={item.image}
+            alt="img"
+            className="inventoryModalImagePreview"
+          />
         )}
-        {item.update && (
-          <button className="inventoryModalButton" onClick={UpdateItem}>
-            Update &nbsp;
-            {showSpin && <LoadingSpin size="20px" width="3px"></LoadingSpin>}
-          </button>
-        )}
-      </form>
-      {item.image && (
-        <img
-          src={item.image}
-          alt="img"
-          className="inventoryModalImagePreview"
-        />
-      )}
-    </div>
+      </motion.div>
   )
 }
 
