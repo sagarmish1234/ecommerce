@@ -28,6 +28,7 @@ function InventoryItemEntry(props) {
       const response = await temp.json()
       console.log(response)
       setInventory(inventory.filter((item) => item._id !== props.item._id))
+      localStorage.setItem('inventory', JSON.stringify(inventory.filter((item) => item._id !== props.item._id)))
     } catch (e) {}
   }
 

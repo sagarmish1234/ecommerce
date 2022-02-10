@@ -3,11 +3,27 @@ import ManagerNavbar from '../../../components/navbar/managerNavbar/ManagerNavba
 import Inventory from '../../../components/inventory/Inventory'
 import Order from '../../../components/orders/Orders'
 import { Routes, Route } from 'react-router-dom'
-function ManagerHome() {
+import { motion } from 'framer-motion'
 
+function ManagerHome() {
   return (
     <>
-      <div className="managerHomeContainer">
+      <motion.div
+        initial={{
+          x: '-100vw',
+        }}
+        animate={{
+          x: 0,
+        }}
+        transition={{
+          duration: 0.5,
+          delay: 0,
+        }}
+        exit={{
+          opacity: 0,
+        }}
+        className="managerHomeContainer"
+      >
         <div className="managerHomeLeft">
           <ManagerNavbar></ManagerNavbar>
         </div>
@@ -17,7 +33,7 @@ function ManagerHome() {
             <Route path="/orders" element={<Order></Order>}></Route>
           </Routes>
         </div>
-      </div>
+      </motion.div>
     </>
   )
 }
