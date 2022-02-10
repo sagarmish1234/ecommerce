@@ -9,7 +9,7 @@
 .registerForm {
   margin: auto;
   width: 30%;
-  border-radius: 7px;
+  border-radius: 10px;
   background-color: white;
   align-items: center;
   padding: 20px;
@@ -17,9 +17,10 @@
   -webkit-box-shadow: 6px 5px 13px -3px rgba(0, 0, 0, 0.79);
   -moz-box-shadow: 6px 5px 13px -3px rgba(0, 0, 0, 0.79);
 }
+
 .registerFormTitle {
   text-align: center;
-  font-size: 30px;
+  font-size: 3rem;
   font-family: 'Redressed', cursive;
   font-weight: bold;
   margin-bottom: 20px;
