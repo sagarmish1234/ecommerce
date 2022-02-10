@@ -6,7 +6,7 @@
   height: calc(100vh - 60px);
   background-color: #dcdddc;
   padding-top: 40px;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 .loginForm {

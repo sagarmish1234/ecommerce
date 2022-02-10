@@ -15,4 +15,21 @@ const loginVariants = {
       scale: 1.2
     }
   };
-export  {loginVariants}
+  const registerVariants = {
+    initial: {
+      opacity: 0,
+      x: "100vh",
+      scale: 1.1
+    },
+    in: {
+      opacity: 1,
+      x: 0,
+      scale: 1
+    },
+    out: {
+      opacity: 0,
+      x: "100vh",
+      scale: 1.1
+    }
+  };
+export  {loginVariants,registerVariants}

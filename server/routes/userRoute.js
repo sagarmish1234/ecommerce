@@ -9,18 +9,33 @@ require('dotenv').config()
 
 //customer register
 router.post('/customer/add', async (req, res) => {
+  const existCustomer = await Customer.findOne({
+    $or: [{ username: req.body.username }, { email: req.body.email }],
+  })
+  if (existCustomer) {
+    res.json({
+      success: false,
+      message: 'User already exists',
+    })
+    return
+  }
+
   const customer = new Customer({
     username: req.body.username,
     password: req.body.password,
-    name: req.body.name,
-    email: req.body.email,
+    name: req.body.name.trim(),
+    email: req.body.email.trim(),
     address: req.body.address,
   })
   try {
     const hash = await bcrypt.hash(customer.password, 10)
     customer.password = hash
     const savedCustomer = await customer.save()
-    res.json(savedCustomer)
+    res.json({
+      savedCustomer,
+      success: true,
+      message: 'Customer added successfully',
+    })
   } catch (err) {
     res.json({ message: err })
   }
@@ -59,21 +74,31 @@ router.post('/login', async (req, res) => {
       return res.status(401).json({ message: 'Password is incorrect' })
     }
     const token = jwt.sign({ _id: customer._id }, process.env.secret)
-    res
-      .header('auth-token', token)
-      .json({ ...customer, isManager: false, message: 'Login Successful',success:true })
+    res.header('auth-token', token).json({
+      ...customer,
+      isManager: false,
+      message: 'Login Successful',
+      success: true,
+    })
   } else if (manager) {
     const validPassword = await bcrypt.compare(
       req.body.password,
       manager.password,
     )
     if (!validPassword) {
-      return res
-        .status(401)
-        .json({ message: 'Password is incorrect', message: 'Login Successful',success:true })
+      return res.status(401).json({
+        message: 'Password is incorrect',
+        message: 'Login Successful',
+        success: true,
+      })
     }
     const token = jwt.sign({ _id: manager._id }, process.env.secret)
-    res.header('auth-token', token).json({ ...manager, isManager: true ,message: 'Login Successful',success:true })
+    res.header('auth-token', token).json({
+      ...manager,
+      isManager: true,
+      message: 'Login Successful',
+      success: true,
+    })
   }
 })
 
