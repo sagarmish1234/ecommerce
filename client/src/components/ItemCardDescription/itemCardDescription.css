@@ -1,0 +1,129 @@
+.itemCardDescriptionContainer {
+  width: 100%;
+  display: flex;
+  padding: 20px;
+  overflow-x: hidden;
+  justify-items: center;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: aliceblue;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #696969;
+  height: 30px;
+  margin: 20px 0px;
+  border-radius: 10px;
+}
+
+.itemCardDescriptionLeft {
+  flex: 3;
+  margin-right: 10px;
+}
+
+.itemCardDescriptionImage {
+  width: 300px;
+  height: 400px;
+  display: block;
+  margin: auto;
+  border-radius: 3px;
+  box-shadow: 6px 5px 13px -3px rgba(0, 0, 0, 0.79);
+  -webkit-box-shadow: 6px 5px 13px -3px rgba(0, 0, 0, 0.79);
+  -moz-box-shadow: 6px 5px 13px -3px rgba(0, 0, 0, 0.79);
+}
+
+.itemCardDescriptionCenter {
+  flex: 6;
+}
+
+.itemCardDescriptionRight {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  align-items: center;
+  height: 200px;
+  width: 100px !important;
+}
+
+.itemCardDescriptionTitle {
+  font-size: 3.25rem;
+  font-family: 'Redressed', cursive;
+}
+
+.itemCardDescriptionAuthor {
+  font-size: 1.7rem;
+  color: rgb(112, 106, 106);
+  font-family: 'Roboto Condensed', cursive;
+}
+
+.itemCardDescriptionContent {
+  font-size: 1.5rem;
+  margin-top: 20px;
+  font-family: 'Roboto', cursive;
+  text-align: justify;
+}
+.itemCardDescriptionQuantity {
+  font-size: 1.5rem;
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  transform: scale(1.2);
+  justify-content: center;
+  font-family: 'Roboto', cursive;
+}
+
+.itemCardDescriptionInput {
+  width: 100px;
+  height: 30px;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.itemCardDescriptionPlus {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  border-radius: 0px 10px 10px 0px;
+  background-color: #07cc07;
+  color: white;
+  font-size: 1.5rem;
+  font-family: 'Roboto', cursive;
+  text-align: center;
+}
+
+.itemCardDescriptionMinus {
+  width: 30px;
+  height: 30px;
+  border-radius: 10px 0px 0px 10px;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  background-color: #ff0000;
+  color: white;
+  font-size: 1.5rem;
+  font-family: 'Roboto', cursive;
+  text-align: center;
+}
+
+.itemDescriptionAddToCart {
+  width: 200px;
+  height: 40px;
+  background-color: #0e26ff;
+  color: white;
+  font-size: 1.75rem;
+  border-radius: 20px;
+  display: flex;
+  border: none;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  cursor: pointer;
+}

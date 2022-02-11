@@ -6,6 +6,7 @@ import Cart from '../../../components/cart/Cart'
 import DisplayItems from '../../../components/displayItems/DisplayItems'
 import ProtectedRoute from '../../../components/protectedRoute/ProtectedRoute'
 import CustomerOrders from '../../../components/customerOrders/CustomerOrders'
+import ItemCardDescription from '../../../components/ItemCardDescription/ItemCardDescription'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import Register from '../../../components/register/Register'
 import { motion } from 'framer-motion'
@@ -38,6 +39,7 @@ function CustomerHome() {
               element={<CustomerOrders></CustomerOrders>}
             ></Route>
           </Route>
+          <Route path='/item/:id' element={<ItemCardDescription></ItemCardDescription>}></Route>
         </Routes>
       </AnimatePresence>
     </motion.div>

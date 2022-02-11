@@ -7,11 +7,13 @@ import url from '../../config'
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { loginVariants } from '../../animationVariants/variants'
+import LoadingSpin from 'react-loading-spin'
 
 function Login() {
   const [user, setUser] = useContext(User)
   const [message, setMessage] = useState('')
   const navigate = useNavigate()
+  const [showSpin, setShowSpin] = useState(false)
   const [person, setPerson] = useState({
     username: '',
     password: '',
@@ -39,6 +41,7 @@ function Login() {
       return
     }
 
+    setShowSpin(true)
     const temp = await fetch(`${url}/api/user/login`, {
       method: 'POST',
       headers: {
@@ -47,15 +50,20 @@ function Login() {
       body: JSON.stringify(person),
     })
     const response = await temp.json()
-    alert(response.message)
     if (response.success) {
       setUser(response)
       localStorage.setItem('user', JSON.stringify(response))
       if (response.isManager) {
         console.log('manager')
         navigate('/inventory')
+      } else {
+        console.log('customer')
+        navigate('/')
       }
+    } else {
+      alert(response.message)
     }
+    setShowSpin(false)
   }
 
   return (
@@ -132,6 +140,9 @@ function Login() {
               </Link>
             </p>
           </div>
+          {showSpin && (
+            <LoadingSpin size={'50px'} width="4px" primaryColor={'#007bff'} />
+          )}
         </form>
       </motion.div>
     </div>

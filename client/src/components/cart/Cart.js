@@ -1,9 +1,14 @@
-import React from 'react'
+import React,{} from 'react'
 import "./cart.css"
+import {CartItems} from "../../App"
 
 function Cart() {
   return (
-    <div>Cart</div>
+    <div className='cartItems'>
+      {
+        
+      }
+    </div>
   )
 }
 

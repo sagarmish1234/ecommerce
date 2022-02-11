@@ -5,6 +5,7 @@ const Manager = require('../models/manager') // Manager is the name of the model
 const jwt = require('jsonwebtoken') // Compact, URL-safe means of representing claims to be transferred between two parties.
 const checkToken = require('../middleware/auth')
 const bcrypt = require('bcrypt')
+const Order = require('../models/order')
 require('dotenv').config()
 
 //customer register
@@ -74,11 +75,15 @@ router.post('/login', async (req, res) => {
       return res.status(401).json({ message: 'Password is incorrect' })
     }
     const token = jwt.sign({ _id: customer._id }, process.env.secret)
+    console.log(customer.username)
+    const orders = await Order.find({ username: customer.username })
+
     res.header('auth-token', token).json({
-      ...customer,
+      ...(customer.toJSON()),
       isManager: false,
       message: 'Login Successful',
       success: true,
+      orders: orders,
     })
   } else if (manager) {
     const validPassword = await bcrypt.compare(

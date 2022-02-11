@@ -13,7 +13,7 @@ export const InventoryItems = React.createContext([])
 export const Item = React.createContext({})
 export const User = React.createContext({})
 export const ModalShow = React.createContext(false)
-export const Cart = React.createContext([])
+export const CartItems = React.createContext([])
 //Component
 function App() {
   const [items, setItems] = useState({})
@@ -47,7 +47,9 @@ function App() {
 
     if (localStorage.user) {
       setUser(JSON.parse(localStorage.user))
-      navigate('/inventory')
+      if(user.isManager){
+        navigate('/inventory')
+      }
     }
   }, [])
 
@@ -56,14 +58,14 @@ function App() {
       <InventoryItems.Provider value={[inventory, setInventory]}>
         <ModalShow.Provider value={[modal, setModal]}>
           <User.Provider value={[user, setUser]}>
-            <Cart.Provider value={[cart, setCart]}>
+            <CartItems.Provider value={[cart, setCart]}>
               <Item.Provider value={[items, setItems]}>
                 <User.Provider value={[user, setUser]}>
                   <Home></Home>
                   {/* <ManagerHome></ManagerHome> */}
                 </User.Provider>
               </Item.Provider>
-            </Cart.Provider>
+            </CartItems.Provider>
           </User.Provider>
         </ModalShow.Provider>
       </InventoryItems.Provider>

@@ -6,6 +6,7 @@ const OrderSchema = new mongoose.Schema(
     cart: {
       type: Array,
       default: [],
+      total: Number,
     },
   },
   {

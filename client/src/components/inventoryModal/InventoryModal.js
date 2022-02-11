@@ -87,6 +87,8 @@ function InventoryModal() {
       setInventory(
         [...inventory, response].sort((a, b) => a.title.localeCompare(b.title)),
       )
+      localStorage.setItem('inventory', JSON.stringify([...inventory,response]))
+
       console.log(response)
       setModal(false)
     } catch (e) {

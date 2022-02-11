@@ -4,6 +4,7 @@ import { Logout } from '@mui/icons-material'
 import { NavLink } from 'react-router-dom'
 import { User } from '../../../App'
 import { useNavigate } from 'react-router-dom'
+import logo from "../../../assets/logo.png"
 
 function ManagerNavbar() {
   const navigation = useNavigate()
@@ -12,7 +13,7 @@ function ManagerNavbar() {
     <>
       <div className="managerNavbarContainer">
         <div className="managerNavbarBrand">
-          <img src="./logo.png" alt="" className="managerNavbarBrandImg" />
+          <img src={logo} alt="" className="managerNavbarBrandImg" />
           <span className="managerNavbarBrandTitle">ShopKart</span>
         </div>
         <ul className="managerNavbarLinks">
@@ -28,7 +29,7 @@ function ManagerNavbar() {
             onClick={() => {
               localStorage.removeItem('user')
               navigation('/')
-              setUser('')
+              setUser(null)
             }}
           >
             <Logout style={{ marginRight: '2px' }}></Logout>

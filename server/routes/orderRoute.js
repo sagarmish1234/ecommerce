@@ -8,6 +8,7 @@ router.post('/order/:username/add', checkToken, async (req, res) => {
   const order = new Order({
     username: req.params.username,
     cart: req.body.cart,
+    total: req.body.total,
     timestamps: true,
   })
   try {
