@@ -4,7 +4,7 @@ import { ModalShow, Item, InventoryItems } from '../../App'
 import url from '../../config'
 import ItemDescription from '../itemDescription/ItemDescription'
 import React from 'react'
-import { AnimatePresence } from 'framer-motion'
+import { AnimatePresence,motion } from 'framer-motion'
 export const ShowDescription = React.createContext(false)
 
 function InventoryItemEntry(props) {
@@ -38,7 +38,19 @@ function InventoryItemEntry(props) {
 
   return (
     <>
-      <div className="inventoryItemEntryContainer">
+      <motion.div 
+      initial={{
+        scaleY: 0,
+      }}
+
+      animate={{
+        scaleY: 1,
+      }}
+      transition={{
+        duration:.7,
+      }}
+      
+      className="inventoryItemEntryContainer">
         <div className="inventoryItemTitle">{title}</div>
         <div className="inventoryItemAuthor">{author}</div>
         <div className="inventoryItemPrice">&#8377; {price}</div>
@@ -68,7 +80,7 @@ function InventoryItemEntry(props) {
             )}
           </AnimatePresence>
         </ShowDescription.Provider>
-      </div>
+      </motion.div>
     </>
   )
 }

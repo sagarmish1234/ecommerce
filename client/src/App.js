@@ -36,20 +36,16 @@ function App() {
       localStorage.inventory = JSON.stringify(response)
       setInventory(response.sort((a, b) => a.title.localeCompare(b.title)))
     }
-
-    if (localStorage.inventory) {
-      setInventory(
-        JSON.parse(localStorage.inventory).sort((a, b) =>
-          a.title.localeCompare(b.title),
-        ),
-      )
-    } else fetchData()
+    fetchData()
 
     if (localStorage.user) {
       setUser(JSON.parse(localStorage.user))
       if(user.isManager){
         navigate('/inventory')
       }
+    }
+    if(localStorage.cart){
+      setCart(JSON.parse(localStorage.cart))
     }
   }, [])
 

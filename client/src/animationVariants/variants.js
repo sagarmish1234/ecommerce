@@ -11,7 +11,7 @@ const loginVariants = {
     },
     out: {
       opacity: 0,
-      x: "100vh",
+      y: "100vh",
       scale: 1.2
     }
   };
@@ -28,7 +28,7 @@ const loginVariants = {
     },
     out: {
       opacity: 0,
-      x: "100vh",
+      y: "100vh",
       scale: 1.1
     }
   };

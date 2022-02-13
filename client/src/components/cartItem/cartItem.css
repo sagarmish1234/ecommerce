@@ -1,0 +1,35 @@
+.cartItem{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+    grid-auto-rows: 230px;
+    justify-items: center;
+    border-bottom: 1px solid black ;
+}
+
+.cartItemImage{
+    width: 200px;
+    height: 300px;
+    transform: scale(.7);
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+.cartItemTitle{
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    justify-self: left;
+}
+
+.cartItemRemove{
+    width: 70%;
+    font-size: 1.1rem;
+    outline: none;
+    border: none;
+    height: 30px;
+    border-radius: 3px;
+    background-color: rgba(255, 24, 24, 0.932);
+    color: white;
+    cursor: pointer;
+}

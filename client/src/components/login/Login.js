@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import './login.css'
 import { User } from '../../App'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import SideModal from '../sideModal/SideModal'
 import url from '../../config'
 import { useNavigate } from 'react-router-dom'
@@ -12,6 +12,7 @@ import LoadingSpin from 'react-loading-spin'
 function Login() {
   const [user, setUser] = useContext(User)
   const [message, setMessage] = useState('')
+  const location = useLocation()
   const navigate = useNavigate()
   const [showSpin, setShowSpin] = useState(false)
   const [person, setPerson] = useState({
@@ -58,7 +59,12 @@ function Login() {
         navigate('/inventory')
       } else {
         console.log('customer')
-        navigate('/')
+        if(location.state){
+          navigate("/checkout")
+        }
+        else{
+          navigate('/')
+        }
       }
     } else {
       alert(response.message)
