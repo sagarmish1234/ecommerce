@@ -16,7 +16,7 @@ import { InventoryItems } from '../../../App'
 
 function CustomerHome() {
   const location = useLocation()
-  const [inventory,setInventory] = useContext(InventoryItems)
+  // const [inventory,setInventory] = useContext(InventoryItems)
   return (
     <motion.div
       exit={{

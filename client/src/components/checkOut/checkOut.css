@@ -1,0 +1,41 @@
+.checkOutContainer {
+  display: flex;
+  padding: 20px;
+}
+
+.checkOutItemContainer {
+  flex: 9;
+  background-color: #f5f5f5;
+  padding-top: 30px;
+  margin-right: 40px;
+  border-radius: 7px;
+}
+
+.checkOutItem {
+  display: grid;
+  grid-template-columns: 2fr 0.5fr 0.5fr 1fr ;
+  column-gap:  0px;
+  margin-bottom: 30px;
+  text-align: center;
+  align-items: center;
+}
+
+.checkOutItemTitle{
+    font-size: 1.7rem;
+    font-family: 'Redressed', cursive;
+    color: #4d4d4d;
+}
+
+.checkOutItemPrice , .checkOutItemQuantity, .checkOutItemTotalPrice{
+    font-size: 1.7rem;
+    font-family: 'Roboto', cursive;
+    color: #4d4d4d;
+}
+
+
+.checkOutTotalContainer {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

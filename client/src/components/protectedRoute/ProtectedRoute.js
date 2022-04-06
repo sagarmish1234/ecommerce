@@ -4,7 +4,7 @@ import { Navigate, Outlet, useLocation } from 'react-router-dom'
 function ProtectedRoute() {
   const isAuthenticated = localStorage.user
   const location = useLocation()
-  console.log('this', isAuthenticated)
+  // console.log('this', isAuthenticated)
   return isAuthenticated ? (
     <Outlet></Outlet>
   ) : (
